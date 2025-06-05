@@ -1,0 +1,14 @@
+
+services:
+  rstudio:
+    build: .
+    container_name: rstudio-server
+    ports:
+      - "8787:8787"               # <host>:<container>
+    environment:
+      ROOT: "true"                # rstudio 사용자가 sudo 가능 (패키지 설치 편리)
+    volumes:
+      - ./rstudio-home:/home      # 각 사용자의 홈
+      - ./shared-data:/data       # 공용 데이터 폴더
+    restart: unless-stopped
+
